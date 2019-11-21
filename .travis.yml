@@ -6,3 +6,18 @@ before_install:
   - docker build -t vimalkanagaraj/sample-react -f Dockerfile.dev .
 script:
   - docker run -e CI=true vimalkanagaraj/sample-react npm run test
+
+deploy:
+  #edge: true
+  #access_key_id: $AWS_ACCESS_KEY
+  #secret_access_key: $AWS_SECRET_KEY
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "sample-react"
+  env: "SampleReact-env" 
+  bucket_name: "elasticbeanstalk-us-east-2-086137520752"
+  bucket_path: "sample-react"
+  on:
+    branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
