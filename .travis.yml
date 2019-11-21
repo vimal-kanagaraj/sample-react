@@ -4,3 +4,5 @@ services:
 
 before_install:
   - docker build -t vimalkanagaraj/sample-react -f Dockerfile.dev .
+script:
+  - docker run -e CI=true vimalkanagaraj/sample-react npm run test
